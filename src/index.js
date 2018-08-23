@@ -4,36 +4,41 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-
 import { combineReducers, createStore} from 'redux';
 import { Provider } from 'react-redux';
-import productsReducers from './stateManagement/reducers/productsReducer';
-import userReducers from './stateManagement/reducers/userReducer';
 import levelReducer from './stateManagement/reducers/levelReducer';
+import possibilityReducer from './stateManagement/reducers/possibilitiesReducer';
+import lifeReducer from './stateManagement/reducers/lifeReducer';
+import clicksReducer from './stateManagement/reducers/clicksReducer';
+import timeReducer from './stateManagement/reducers/timeReducer';
+import remainingBoxes from './stateManagement/reducers/remainingLevelBoxesReducer';
+import availableBoxesReducer from './stateManagement/reducers/availableBoxesPerClickReducer';
+import canPlayReducer from './stateManagement/reducers/canPlayReducer';
 
-// function productsReducer(state=[], action){
-//     return state;
-// }
-// function userReducer(state = '', {type, payload}){
-//     switch (type) {
-//         case 'updateUser':
-//             return payload;
-//     }
-//     return state;
-// }
 const allReducers = combineReducers({
-    user: userReducers,
-    level: levelReducer
+    level: levelReducer,
+    lives: lifeReducer,
+    possibilities: possibilityReducer,
+    clicked: clicksReducer,
+    timer: timeReducer,
+    remainingBoxes,
+    availableBoxes: availableBoxesReducer,
+    canPlay: canPlayReducer
 });
 const store = createStore(
     allReducers,
     {
-        user: 'Michael',
-        level: 1
+        level: parseInt(localStorage.getItem('level')) || 1,
+        lives: parseInt(localStorage.getItem('life')) || 1,
+        possibilities: [],
+        clicked: [],
+        timer: 0,
+        remainingBoxes: [],
+        availableBoxes: [],
+        canPlay: false
     },
     window.devToolsExtension && window.devToolsExtension()
 );
-
 
 
 

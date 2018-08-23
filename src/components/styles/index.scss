@@ -1,9 +1,7 @@
 @import "resets";
+@import "playerBoard";
 
 .boxContainer{
-  //position: relative;
-  //grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-  //grid-template-columns: 1fr 1fr ;
   display: grid;
   grid-template-columns: repeat(10, 1fr) ;
   grid-template-rows: repeat(10, 55px) ;
@@ -16,6 +14,7 @@
   padding: auto;
 }
 .parentContainer{
+  position: relative;
   display: flex;
   width: 100%;
   height: 100vh;
@@ -33,12 +32,53 @@
     height: 100%;
     color: #ffffff;
     margin-left: 15px;
+    padding: 17px;
+    ul{
+      list-style: none;
+      padding: 0;
+      li{
+        margin-bottom: 10px;
+      }
+    }
+  }
+  @media screen and (max-width: 678px){
+
+    flex-direction: column;
+    padding-top: 5px;
+    > div{
+      width: 100%;
+    }
+    .boxContainer{
+      flex: 6 6 0;
+      grid-template-rows: repeat(10, 1fr) ;
+
+    }
+    .stats{
+      background-color: #222222;
+      flex: 1 1 0;
+      //height: 100%;
+      color: #ffffff;
+      margin-left: 15px;
+      padding: 17px;
+      ul{
+        list-style: none;
+        padding: 0;
+        li{
+          display: inline;
+          margin-bottom: 10px;
+          margin-right: 10px;
+        }
+      }
+    }
   }
 }
 
 .hovered{
   background-color: #dddddd;
   transition: all 500ms;
+}
+.toBeClicked{
+  background-color: #52582c;
 }
 .clicked{
   background-color: #333333;
@@ -51,4 +91,33 @@
   transition: all 500ms;
 
 
+}
+.scoreAlert{
+  z-index: 10;
+  position: fixed;
+  float: left;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.63);
+
+  .scoreModel{
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    background-color: #ffffff;
+    //margin: 50% auto;
+    padding: 27px;
+    width: 45%;
+    border-radius: 4%;
+    border: solid #cccccc 2px;
+    text-align: center;
+    box-shadow: 10px 10px 25px;
+    button{
+      padding: 5px;
+      margin: 5px;
+      width: 50px;
+      border: #333333 solid 1px;
+      border-radius: 2px;
+    }
+  }
 }
